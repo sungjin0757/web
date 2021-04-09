@@ -8,9 +8,32 @@
 <h1>회원 가입</h1>
 <hr>
 
-<form th:action="@{/user/signup}" th:object="${MemberForm}" method="post">
-    <input type="text" th:field="*{name}" placeholder="아이디 입력해주세요">
-    <input type="password" th:field="*{password}" placeholder="비밀번호">
+<form th:action="@{/user/signup}" th:object="${MemberDto}" method="post">
+    <div>
+        <label th:for="name">아이디</label>
+        <input type="text" th:field="*{name}" placeholder="아이디 입력해주세요" >
+        <p th:if="${#fields.hasErrors('name')}"
+           th:errors="*{name}">Incorrect date</p>
+    </div>
+    <div>
+        <label th:for="password">비밀번호</label>
+        <input type="password" th:field="*{password}" placeholder="비밀번호">
+        <p th:if="${#fields.hasErrors('password')}"
+           th:errors="*{password}">Incorrect date</p>
+    </div>
+    <div>
+        <label th:for="zipcode">우편번호</label>
+        <input type="text" th:field="*{zipcode}" placeholder="우편번호">
+    </div>
+    <div>
+        <label th:for="city">시/도/군</label>
+        <input type="text" th:field="*{city}" placeholder="시/도/군">
+    </div>
+    <div>
+        <label th:for="street">상세 주소</label>
+        <input type="text" th:field="*{street}" placeholder="상세 주소">
+    </div>
+
     <button type="submit">가입하기</button>
 </form>
 </body>

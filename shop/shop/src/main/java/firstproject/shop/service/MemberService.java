@@ -27,7 +27,7 @@ public class MemberService implements UserDetailsService {
     @Transactional
     public Long join(Member member){
         //이미 가입한 회원
-        validateDuplicate(member);
+       // validateDuplicate(member);
         //비밀번호 암호
         BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
         member.EncodePassword(passwordEncoder.encode(member.getPassword()));
@@ -36,12 +36,12 @@ public class MemberService implements UserDetailsService {
     }
 
     //중복 회원
-    private void validateDuplicate(Member member){
+/*    private void validateDuplicate(Member member){
         List<Member> members=memberRepository.findByName(member.getName());
         if(!members.isEmpty()){
             throw new IllegalStateException("이미 존재하는 회원입니다!");
         }
-    }
+    }*/
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {

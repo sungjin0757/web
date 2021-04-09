@@ -37,4 +37,14 @@ public class Member {
         this.name=name;
         this.password=password;
     }
+    public Member(){
+
+    }
+    public Member(String name, String password, String zipcode, String city, String street) {
+        this.name = name;
+        this.password = password;
+        this.zipcode = zipcode;
+        this.city = city;
+        this.street = street;
+    }
 }

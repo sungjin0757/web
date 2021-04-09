@@ -5,8 +5,14 @@ import firstproject.shop.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Controller
@@ -20,17 +26,18 @@ public class MemberController {
 
     @GetMapping("/user/signup")
     public String getSignup(Model model){
-        model.addAttribute("MemberForm",new MemberForm());
+        model.addAttribute("MemberDto",new MemberDto());
         return "/signup";
     }
 
     @PostMapping("/user/signup")
-    public String postSignup(MemberForm memberForm){
-        System.out.println("memberForm = " + memberForm.getName()+ " "+memberForm.getPassword());
-        Member member=new Member();
-        member.updateNameAndPassword(memberForm.getName(),memberForm.getPassword());
-        memberService.join(member);
+    public String postSignup(@Valid @ModelAttribute("MemberDto")MemberDto memberDto, BindingResult result){
+        if (result.hasErrors()){
+            return "/signup";
+        }
 
+        Member member=new Member(memberDto.getName(),memberDto.getPassword(),memberDto.getZipcode(),memberDto.getCity(),memberDto.getStreet());
+        memberService.join(member);
         return "redirect:/user/login";
     }
 
