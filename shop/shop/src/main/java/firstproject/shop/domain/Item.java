@@ -1,5 +1,6 @@
 package firstproject.shop.domain;
 
+import firstproject.shop.Exception.NotEnoughStockQuantityException;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -29,4 +30,15 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private List<CategoryItem> categoryItems=new ArrayList<>();
 
+    public void plusStock(int quantity){
+        this.sort+=quantity;
+    }
+
+    public void delStock(int quantity){
+        int restStock=this.stock-quantity;
+        if(restStock<0){
+            throw new NotEnoughStockQuantityException("재고부족");
+        }
+        this.stock=restStock;
+    }
 }

@@ -17,8 +17,14 @@ public class Delivery {
     private String city;
     private String street;
 
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "delivery")
+    private Order order;
     //주문 상태
     @Enumerated(EnumType.STRING)
     private DeliveryStatus deliveryStatus;
+
+    public void addOrder(Order order){
+        this.order=order;
+    }
 
 }

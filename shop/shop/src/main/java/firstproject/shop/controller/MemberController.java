@@ -27,13 +27,13 @@ public class MemberController {
     @GetMapping("/user/signup")
     public String getSignup(Model model){
         model.addAttribute("MemberDto",new MemberDto());
-        return "/signup";
+        return "/members/signup";
     }
 
     @PostMapping("/user/signup")
     public String postSignup(@Valid @ModelAttribute("MemberDto")MemberDto memberDto, BindingResult result){
         if (result.hasErrors()){
-            return "/signup";
+            return "/members/signup";
         }
 
         Member member=new Member(memberDto.getName(),memberDto.getPassword(),memberDto.getZipcode(),memberDto.getCity(),memberDto.getStreet());
@@ -44,36 +44,36 @@ public class MemberController {
     // 로그인 페이지
     @GetMapping("/user/login")
     public String dispLogin() {
-        return "/login";
+        return "/members/login";
     }
 
     // 로그인 결과 페이지
     @GetMapping("/user/login/result")
     public String dispLoginResult() {
-        return "/loginSuccess";
+        return "/members/loginSuccess";
     }
 
     // 로그아웃 결과 페이지
     @GetMapping("/user/logout/result")
     public String dispLogout() {
-        return "/logout";
+        return "/members/logout";
     }
 
     // 접근 거부 페이지
     @GetMapping("/user/denied")
     public String dispDenied() {
-        return "/denied";
+        return "/members/denied";
     }
 
     // 내 정보 페이지
     @GetMapping("/user/info")
     public String dispMyInfo() {
-        return "/myinfo";
+        return "/members/myinfo";
     }
 
     // 어드민 페이지
     @GetMapping("/admin")
     public String dispAdmin() {
-        return "/admin";
+        return "/members/admin";
     }
 }
