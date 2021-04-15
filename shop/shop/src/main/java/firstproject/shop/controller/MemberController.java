@@ -21,17 +21,17 @@ public class MemberController {
 
     @GetMapping("/")
     public String index(){
-        return "/index";
+        return "/members/index";
     }
 
     @GetMapping("/user/signup")
     public String getSignup(Model model){
-        model.addAttribute("MemberDto",new MemberDto());
+        model.addAttribute("memberDto",new MemberDto());
         return "/members/signup";
     }
 
     @PostMapping("/user/signup")
-    public String postSignup(@Valid @ModelAttribute("MemberDto")MemberDto memberDto, BindingResult result){
+    public String postSignup(@Valid MemberDto memberDto, BindingResult result){
         if (result.hasErrors()){
             return "/members/signup";
         }
