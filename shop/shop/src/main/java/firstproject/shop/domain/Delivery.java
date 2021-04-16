@@ -27,4 +27,14 @@ public class Delivery {
         this.order=order;
     }
 
+    public void updateDelivery(String zipcode,String city,String street,DeliveryStatus deliveryStatus){
+        this.zipcode=zipcode;
+        this.city=city;
+        this.street=street;
+        this.deliveryStatus=deliveryStatus;
+    }
+
+    public void updateStatus(DeliveryStatus deliveryStatus){
+        this.deliveryStatus=deliveryStatus;
+    }
 }
