@@ -31,7 +31,7 @@ public class Item {
     private List<CategoryItem> categoryItems=new ArrayList<>();
 
     public void plusStock(int quantity){
-        this.sort+=quantity;
+        this.stock+=quantity;
     }
 
     public void delStock(int quantity){
@@ -40,5 +40,14 @@ public class Item {
             throw new NotEnoughStockQuantityException("재고부족");
         }
         this.stock=restStock;
+    }
+
+    public void addName(String name){
+        this.name=name;
+    }
+
+    public void updateStockAndPrice(int count,int price){
+        this.stock=count;
+        this.price=price;
     }
 }
