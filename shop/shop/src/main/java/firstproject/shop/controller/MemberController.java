@@ -19,10 +19,6 @@ import java.util.Map;
 public class MemberController {
     private final MemberService memberService;
 
-    @GetMapping("/")
-    public String index(){
-        return "/members/index";
-    }
 
     @GetMapping("/user/signup")
     public String getSignup(Model model){
