@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:fragment="body">
-    <a href="/">Home</a>
-    <a href="/">Hello shep</a>
+<div class="header navbar navbar-expand-lg navbar-light bg-light fixed-top" th:fragment="body">
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="/" class="nav-link">shop</a>
+            </li>
+            <li class="nav-item">
+                <a href="/user/new" class="nav-link">login info</a>
+            </li>
+        </ul>
+    </div>
 </div>

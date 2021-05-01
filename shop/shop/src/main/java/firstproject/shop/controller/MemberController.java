@@ -19,6 +19,10 @@ import java.util.Map;
 public class MemberController {
     private final MemberService memberService;
 
+/*    @GetMapping("/user/new")
+    public String info(){
+
+    }*/
 
     @GetMapping("/user/signup")
     public String getSignup(Model model){
