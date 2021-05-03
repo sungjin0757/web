@@ -1,19 +1,42 @@
-<!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <meta charset="UTF-8">
-    <title>로그인 페이지</title>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: header">
+    <title>Shop</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
+<style>
+    .layer{
+  position:absolute;
+  top:0;right:0;bottom:0;left:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  display:-webkit-flex;
+  -webkit-align-item;center;
+  -webkit-justify-content:center;
+}
+</style>
 <body>
-    <h1>로그인</h1>
+    <nav th:replace="fragments/body :: body" >
+    </nav>
+    <div class="container  " >
+        <div class="layer">
+            <form class="form-signin " action="/user/login"  method="post">
+                <h3 class="h2 font-weight-bold mb-2">LogIn</h3>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
-    <form action="/user/login"  method="post">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-        <input type="text" name="username" placeholder="아이디를 입력해주세요">
-        <input type="password" name="password" placeholder="비밀번호">
-        <button type="submit">로그인</button>
+                <label for="username" class="sr-only"></label>
+                <input type="text" name="username" id="username" placeholder="아이디를 입력해주세요" class="form-control" >
 
-    </form>
+
+                <label for="password" class="sr-only"></label>
+                <input type="password" name="password" id="password" placeholder="비밀번호" class="form-control mb-2">
+
+                <button type="submit" class="btn btn-primary btn-sm btn-block">로그인</button>
+                <a sec:authorize="isAnonymous()" th:href="@{/user/signup}">회원가입 하러 가기</a>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

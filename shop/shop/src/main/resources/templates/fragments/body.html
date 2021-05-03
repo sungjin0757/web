@@ -1,17 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<div class="header navbar navbar-expand-lg navbar-light bg-light fixed-top" th:fragment="body">
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:fragment="body">
+    <a class="navbar-brand mx-2" href="#">Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarToggle">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
                 <a href="/" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
                 <a href="/" class="nav-link">shop</a>
             </li>
-            <li class="nav-item">
-                <a href="/user/new" class="nav-link">login info</a>
-            </li>
         </ul>
+
+        <a sec:authorize="isAnonymous()" th:href="@{/user/login}" class="btn btn-secondary my-2 my-lg-0 me-1">로그인</a>
+        <form class="form-inline my-2 my-lg-0" sec:authorize="isAuthenticated()" th:action="@{/user/logout}" method="post">
+            <span class="text-white" sec:authentication="name">사용자</span>
+            <span class="text-white mx-2" sec:authentication="principal.authorities">권한</span>
+            <button class="btn btn-secondary my-2 my-sm-0">Logout</button>
+        </form>
     </div>
-</div>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>

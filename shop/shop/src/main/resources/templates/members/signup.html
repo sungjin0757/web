@@ -1,40 +1,60 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="fragments/header :: header">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>회원가입 페이지</title>
 </head>
-<body>
-<h1>회원 가입</h1>
-<hr>
+<style>
+    .layer{
+  position:absolute;
+  top:0;right:0;bottom:0;left:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-<form th:action="@{/user/signup}" th:object="${memberDto}" method="post">
-    <div>
-        <label th:for="name">아이디</label>
-        <input type="text" th:field="*{name}" placeholder="아이디 입력해주세요" >
-        <p th:if="${#fields.hasErrors('name')}"
-           th:errors="*{name}">Incorrect date</p>
-    </div>
-    <div>
-        <label th:for="password">비밀번호</label>
-        <input type="password" th:field="*{password}" placeholder="비밀번호">
-        <p th:if="${#fields.hasErrors('password')}"
-           th:errors="*{password}">Incorrect date</p>
-    </div>
-    <div>
-        <label th:for="zipcode">우편번호</label>
-        <input type="text" th:field="*{zipcode}" placeholder="우편번호">
-    </div>
-    <div>
-        <label th:for="city">시/도/군</label>
-        <input type="text" th:field="*{city}" placeholder="시/도/군">
-    </div>
-    <div>
-        <label th:for="street">상세 주소</label>
-        <input type="text" th:field="*{street}" placeholder="상세 주소">
-    </div>
+  display:-webkit-flex;
+  -webkit-align-item;center;
+  -webkit-justify-content:center;
+}
+</style>
+    <body>
+        <nav th:replace="fragments/body :: body">
+        </nav>
+        <div class="container">
+            <div class="layer">
+                <form th:action="@{/user/signup}" th:object="${memberDto}" method="post">
+                    <h3 class="h2 font-weight-bold mb-2">SignUp</h3>
+                    <div class="form-group">
+                        <label th:for="name">아이디</label>
+                        <input type="text" th:field="*{name}" placeholder="아이디 입력해주세요" class="form-control">
+                        <p th:if="${#fields.hasErrors('name')}"
+                           th:errors="*{name}">Incorrect date</p>
+                    </div>
+                    <div class="form-group">
+                        <label th:for="password">비밀번호</label>
+                        <input type="password" th:field="*{password}" placeholder="비밀번호" class="form-control">
+                        <p th:if="${#fields.hasErrors('password')}"
+                           th:errors="*{password}">Incorrect date</p>
+                        <span class="help-block">비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자~20자의 비밀번호 입니다.</span>
+                    </div>
+                    <div class="form-group">
+                        <label th:for="zipcode">우편번호</label>
+                        <input type="text" th:field="*{zipcode}" placeholder="우편번호" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label th:for="city">시/도/군</label>
+                        <input type="text" th:field="*{city}" placeholder="시/도/군" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label th:for="street">상세 주소</label>
+                        <input type="text" th:field="*{street}" placeholder="상세 주소" class="form-control mb-2">
+                    </div>
 
-    <button type="submit">가입하기</button>
-</form>
-</body>
+                    <button type="submit" class="btn btn-primary ">가입하기</button>
+
+                </form>
+            </div>
+
+        </div>
+    </body>
 </html>
