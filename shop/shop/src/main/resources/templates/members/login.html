@@ -20,10 +20,10 @@
 <body>
     <nav th:replace="fragments/body :: body" >
     </nav>
-    <div class="container  " >
+    <div class="container " >
         <div class="layer">
             <form class="form-signin " action="/user/login"  method="post">
-                <h3 class="h2 font-weight-bold mb-2">LogIn</h3>
+                <h3 class="h3 font-weight-bold mb-2">LogIn</h3>
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
                 <label for="username" class="sr-only"></label>
@@ -38,5 +38,6 @@
             </form>
         </div>
     </div>
+
 </body>
 </html>

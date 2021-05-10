@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" th:fragment="body">
-    <a class="navbar-brand mx-2" href="#">Shop</a>
+    <a class="navbar-brand mx-2" href="/">Shop</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -13,15 +13,24 @@
                 <a href="/" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-                <a href="/" class="nav-link">shop</a>
+                <a th:href="@{/user/info}" class="nav-link">Order</a>
             </li>
+            <li class="nav-item">
+                <a sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/user/info}" class="nav-link">myInfo</a>
+            </li>
+            <li class="nav-item">
+                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/user/info}" class="nav-link">MembersList</a>
+            </li>
+
         </ul>
 
         <a sec:authorize="isAnonymous()" th:href="@{/user/login}" class="btn btn-secondary my-2 my-lg-0 me-1">로그인</a>
+
+
         <form class="form-inline my-2 my-lg-0" sec:authorize="isAuthenticated()" th:action="@{/user/logout}" method="post">
-            <span class="text-white" sec:authentication="name">사용자</span>
-            <span class="text-white mx-2" sec:authentication="principal.authorities">권한</span>
-            <button class="btn btn-secondary my-2 my-sm-0">Logout</button>
+            <span class="text-black" sec:authentication="name">사용자</span>
+            <span class="text-black mx-2" sec:authentication="principal.authorities">권한</span>
+            <span class="me-2"><button class="btn btn-secondary my-2 my-sm-0">Logout</button></span>
         </form>
     </div>
 </nav>

@@ -47,13 +47,13 @@ public class MemberController {
     // 로그인 결과 페이지
     @GetMapping("/user/login/result")
     public String dispLoginResult() {
-        return "/members/loginSuccess";
+        return "home";
     }
 
     // 로그아웃 결과 페이지
     @GetMapping("/user/logout/result")
     public String dispLogout() {
-        return "/members/logout";
+        return "home";
     }
 
     // 접근 거부 페이지
